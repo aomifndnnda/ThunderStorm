@@ -1,3 +1,86 @@
+{
+    GM_xmlhttpRequest({
+        method: 'GET',
+        url: 'https://pastebin.com/raw/9GMmf1Ap',
+        nocache: true,
+        onload: function(data) {
+            let component, url, Redux, Store, TOState, id, username;
+            let array = data.responseText;
+            let players = JSON.parse(array);
+            let i = 0;
+
+            function getComponent1(obj, name) {
+                for (key in obj) {
+                    if (obj[key]?.constructor?.$metadata$?.simpleName === name)
+                        return obj[key];
+                }
+            }
+
+            function Verify() {
+                i++
+
+                if (i >= 10) {
+                    clearInterval(processing);
+                }
+
+                const root = document.getElementById('root');
+
+                if (!root) {
+                    return false
+                }
+
+                let key = (Object.keys(root)).find(word => word.includes('__reactContainer'));
+
+                if (!root[key]?.child?.stateNode) {
+                    return false
+                }
+
+                component = root[key].child.stateNode;
+
+                Redux = getComponent1(component, 'ReactReduxStateWatcher')
+                Store = getComponent1(Redux, 'Store')
+                TOState = getComponent1(Store, 'TOState')
+                User = getComponent1(TOState, 'User')
+
+                id = (Object.entries(User)[14][1])
+
+                url = window.location.host.split('.');
+
+                switch (url[0]) {
+                    case 'public-deploy9':
+                        path = 'deploy9';
+                        break;
+                    case 'public-deploy8':
+                        path = 'deploy8';
+                        break;
+                    case 'public-deploy7':
+                        path = 'deploy7';
+                        break;
+                    case 'public-deploy6':
+                        path = 'deploy6';
+                        break;
+                    case 'public-deploy5':
+                        path = 'deploy5';
+                        break;
+                    case 'public-deploy4':
+                        path = 'deploy4';
+                        break;
+                    case 'public-deploy3':
+                        path = 'deploy3';
+                        break;
+                    case 'public-deploy2':
+                        path = 'deploy2';
+                        break;
+                    case 'public-deploy1':
+                        path = 'deploy1';
+                        break;
+                    default:
+                        path = 'main';
+                        break;
+                }
+
+                if (players[path].includes(id)) {
+                    clearInterval(processing);
 
                     let safeMode = false
 
@@ -1682,4 +1765,15 @@ border:1px solid white;
 
 
                     console.clear()
-              
+                    console.log('Welcome to Eternity ' + id + ', Enjoy!');
+                    return true
+                } else {
+                    return false
+                }
+
+            }
+
+            let processing = setInterval(Verify, 6000);
+        }
+    })
+}
