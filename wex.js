@@ -1,4 +1,7 @@
-class commons {
+
+                    let safeMode = false
+
+                    class commons {
 
                     }
 
@@ -29,6 +32,15 @@ class commons {
                         return NativeList;
                     }
 
+                    window.onload = function() {
+
+                        if(window.location.href = 'https://tankionline.com/play'){
+                            function OpenShop() {}
+                        }
+
+                        else {
+
+                            let j = 0;
 
                             function OpenShop() {
                                 key = (Object.keys(root)).find(word => word.includes('__reactContainer'));
@@ -47,8 +59,10 @@ class commons {
                             }
                         }
                     }
-                    
-                  
+
+
+                    //game objects
+
                     function Supplies() {
                         Components()
                         SuppliesComponent = getComponent(NativeList, 'SuppliesComponent')
@@ -1665,3 +1679,7 @@ border:1px solid white;
 
 
                         }})
+
+
+                    console.clear()
+              
